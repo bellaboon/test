@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./lib/vue-2.4.0.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <mycom3></mycom3>
+        <hr>
+        <mycom3></mycom3>
+    </div>
+    <template id="tem3">
+        <div>
+            <input type="button" value="+1" @click="counter">
+            <h6>{{count}}</h6>
+        </div>
+    </template>
+    <script>
+        var obj={count:1} //如果在此定义一个obj对象，在下面的data中返回此obj，
+        // 则会导致一个按钮控制着所有的标签，点击一个按钮会导致所有的count值都加1；
+        // 因为此时按钮控制的是一个全局的obj 而不是组件中的对象；
+        Vue.component('mycom3', {
+        template:  "#tem3",
+        // 组件可以有自己的data数据，但是这个data数据和其他有些不一样，
+        // 这个data数据必须为一个方法，而且data数据必须返回一个对象才行
+        // 组件中的data使用方式和创建的vue实例中的data使用方式一样
+        data:function(){
+            return {
+                count:1,
+            }
+        },
+        methods:{
+            counter(){
+                this.count++;
+            }
+        }
+    })
+    var vm = new Vue({
+        el:"#app",
+        data:{
+
+        },
+        methods:{
+
+        }
+    })
+    </script>
+</body>
+</html>

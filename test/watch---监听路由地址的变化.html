@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='./lib/vue-2.4.0.js'></script>
+    <script src="./lib/vue-router-3.0.1.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <router-link to="/login">登录</router-link>
+        <router-link to="/register">注册</router-link>
+        <router-view></router-view>
+    </div>
+    <script>
+        var login = {
+            template:'<h3>这是一个登录组件，由奔波霸创建</h3>'
+        }
+        var register = {
+            template:'<h3>这是一个注册组件，由霸波奔创建</h3>'
+        }
+        var router = new VueRouter({
+            routes:[
+                // redirect表示路由重定向，表示刚显示的路由指向
+                {path:'/',redirect:'/login'},
+                {path:'/login',component:login},
+                {path:'/register',component:register}
+            ]
+        })
+         var vm = new Vue({
+            el : '.container',
+            data : {  },
+            methods : { } ,
+            router ,
+            watch:{
+                '$route.path':function(newVal,oldVal){
+                    if((this.$route.path) === '/login'){
+                        console.log("欢迎进入登录界面")
+                    }
+                    if((this.$route.path) == '/register'){
+                        console.log("欢迎进入注册界面")
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

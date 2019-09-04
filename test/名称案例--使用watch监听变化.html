@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='./lib/vue-2.4.0.js'></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- 分析如何监听到文本框的数据改变 来进行相应操作 -->
+        <input type="text" v-model="firstname" >+
+        <input type="text" v-model="secondname" >=
+        <input type="text" v-model="name">
+    </div>
+    <script>
+         var vm = new Vue({
+            el : '.container',
+            data : { 
+                firstname:'',
+                secondname:'',
+                name:''
+             },
+            methods : {
+                
+             } ,
+            //  watch属性可以监听data中指定数据的变化，然后调用相应的方法
+             watch:{
+                 firstname:function(newVal,oldVal){
+                    this.name = `${newVal} - ${this.secondname}`
+                 },
+                 secondname:function(newVal,oldVal){
+                    this.name = `${this.firstname} - ${newVal}`
+                 }
+             }  
+        });
+    </script>
+</body>
+
+</html>

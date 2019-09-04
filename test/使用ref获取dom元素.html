@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='https://cdn.bootcss.com/vue/2.4.0/vue.js'></script>
+</head>
+
+<body>
+    <div class="container">
+        <input type="button" value="按钮" @click="getElement" id="mybut" ref="mybut">
+        <h3 ref="myh3" id="myh3">今天天气真好，哈哈哈哈！！！！</h3>
+        <hr>
+        <obj ref = "myobj"></obj>
+    </div>
+    <script>
+        var obj = {
+            template:'<h1>这是组件中的元素</h1>',
+            data:function(){
+                return {
+                    msg:"mymessage"
+                }
+            },
+            methods:{
+                showMessage(){
+                    console.log("调用了子组件"+this.msg)
+                }
+            }
+        }
+         var vm = new Vue({
+            el : '.container',
+            data : { 
+
+             },
+            methods : {
+                getElement(){
+                    // 可以直接调用组件的数据和方法
+                    this.$refs.myobj.showMessage();
+                }
+             } ,
+             components:{
+                 obj
+             }   
+        });
+    </script>
+</body>
+
+</html>

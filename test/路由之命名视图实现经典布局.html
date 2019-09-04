@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        h1{
+            margin: 0;
+            padding:0;
+        }
+        .Header{
+            background-color: red;
+        }
+        .con{
+            display: flex;
+            height: 800px;
+        }
+        .left{
+            background-color: orange;
+            flex:2;
+        }
+        .main{
+            background-color: green;
+            flex:8;
+        }
+    </style>
+    <title>Document</title>
+    <script src='./lib/vue-2.4.0.js'></script>
+    <script src="./lib/vue-router-3.0.1.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <router-view class="Header"></router-view>
+        <div class="con">
+            <router-view name="left" class="left"></router-view>
+            <router-view name="main" class="main"></router-view>
+        </div>
+    </div>
+    <script>
+        var Header={
+            template:'<h1>Header</h1>'
+        }
+        var left={
+            template:'<h1>left</h1>',
+        }
+        var main={
+            template:'<h1>main</h1>'
+        }
+        var router = new VueRouter({
+            routes:[
+                { 
+                    path: '/', 
+                    components:{
+                        default:Header,
+                        left:left,
+                        main:main
+                    }
+                },
+                
+            ]
+        })
+         var vm = new Vue({
+            el : '.container',
+            data : {  },
+            methods : { } ,
+            router : router  
+        });
+    </script>
+</body>
+
+</html>

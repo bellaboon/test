@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./lib/vue-2.4.0.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <my-coml></my-coml>
+    </div>
+    <script>
+        // 使用Vue.extend来创建全局的Vue组件
+        var com1 = Vue.extend({
+            // 通过template属性，指定组件要展示的html属性
+            template:"<h3>这是通过Vue.extend创建的组件</h3>"
+        })
+        // 使用Vue.component('组件的名称','创建出来组件的模板对象')
+        // 注意 如果组件的名称用的是驼峰式命名法，那么在使用该组件的时候 应该用-将其拆开，并全部换为小写
+        // 例如 Vue.component('myComl,coml),使用时应写为：<my-coml></my-coml>
+        Vue.component('myComl',com1);
+    var vm = new Vue({
+        el:"#app",
+        data:{
+
+        },
+        methods:{
+
+        }
+    })
+    </script>
+</body>
+</html>

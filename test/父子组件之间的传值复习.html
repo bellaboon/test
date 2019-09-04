@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='./lib/vue-2.4.0.js'></script>
+</head>
+
+<body>
+    <div class="container">
+        <obj :parentmsg = "msg" @func="show"></obj>
+    </div>
+    <template id="app">
+        <div>
+            <h1>我是子组件-------{{parentmsg}}</h1>
+            <input type="button" value="点我调用父组件方法" @click = "myclick">
+        </div>
+    </template>
+    <script>
+        var obj = {
+            template:'#app',
+            data(){
+                return {
+                    msg:"我是子组件中自定义的msg数据的值"
+                }
+            },
+            methods:{
+                myclick(){
+                    this.$emit('func',this.msg);
+                }
+            },
+            props:['parentmsg']
+        }
+         var vm = new Vue({
+            el : '.container',
+            data : { msg:"我是父组件" },
+            methods : {
+                show(data){
+                    console.log(data)
+                }
+             }   ,
+            components:{
+                obj
+            } 
+        });
+    </script>
+</body>
+
+</html>

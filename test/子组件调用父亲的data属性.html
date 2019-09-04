@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='https://cdn.bootcss.com/vue/2.4.0/vue.js'></script>
+</head>
+
+<body>
+    <div class="container">
+        <mycom :parentmsg="msg"></mycom>
+    </div>
+    <template id="app">
+        <div>
+            <h3 @click="change">哈哈哈哈哈我是谁？-------{{parentmsg}}</h3>
+        </div>
+    </template>
+    <script>
+       
+         var vm = new Vue({
+            el : '.container',
+            data : { 
+                msg:"我是来自父亲的123"
+             },
+            methods : { } ,
+            components:{
+                mycom:{
+                template:"#app",
+            // data中数据是子组件自身的，子组件通过Ajax请求回来的数据都可以放在data身上；可读可写
+                data:function(){
+                return {}
+            },
+            // 组件中的所有props的数据，都是通过父组件传递过来的，只读不写
+                props:[
+                // 把从父亲中传过来的parentMessage先在props中定义一下
+                'parentmsg'
+            ],
+                methods:{
+                change(){
+                    this.parentmsg="被修改了"
+                }
+            }
+            },
+        } 
+        });
+    </script>
+</body>
+
+</html>
